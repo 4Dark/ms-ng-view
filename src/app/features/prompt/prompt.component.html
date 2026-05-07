@@ -1,0 +1,221 @@
+<div class="flex h-screen w-full overflow-hidden bg-gray-50 dark:bg-slate-900 text-gray-900 dark:text-gray-100">
+  
+  <!-- Mobile Sidebar Backdrop -->
+  @if (sidebarService.isOpen() && (sidebarService.isMobile$ | async)) {
+    <div class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-opacity lg:hidden"
+         (click)="sidebarService.close()">
+    </div>
+  }
+
+  <!-- Left Sidebar: Template List -->
+  <aside class="fixed md:relative h-full z-50 flex-shrink-0 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 transition-all duration-300 ease-in-out shadow-2xl md:shadow-none"
+         [class.w-72]="isSidebarOpen()" [class.w-0]="!isSidebarOpen()" 
+         [class.-translate-x-full]="!isSidebarOpen()"
+         [class.translate-x-0]="isSidebarOpen()" [class.md:translate-x-0]="true"
+         [class.overflow-visible]="true">
+    
+    <div class="flex h-full flex-col">
+      <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-slate-700" [class.hidden]="!isSidebarOpen()">
+        <h2 class="text-lg font-semibold flex items-center gap-2">
+          <mat-icon class="!text-blue-500">description</mat-icon>
+          Prompt 模板
+        </h2>
+        <button mat-icon-button (click)="sidebarService.close()" class="lg:hidden">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-2" [class.hidden]="!isSidebarOpen()">
+        <mat-nav-list>
+          @for (template of useCase.templates(); track template.id) {
+            <a mat-list-item 
+               (click)="onSelectTemplate(template)"
+               [class.bg-blue-50]="useCase.selectedTemplate()?.id === template.id"
+               [class.dark:bg-blue-900/20]="useCase.selectedTemplate()?.id === template.id"
+               class="rounded-lg mb-1 transition-colors">
+              <div class="flex items-center gap-3">
+                <mat-icon [class.text-blue-500]="useCase.selectedTemplate()?.id === template.id">
+                  {{ template.type === 'System' ? 'settings' : 'person' }}
+                </mat-icon>
+                <div class="flex flex-col">
+                  <span class="font-medium text-sm">{{ template.slug }}</span>
+                  <span class="text-xs text-gray-500 truncate w-48">{{ template.description }}</span>
+                </div>
+              </div>
+            </a>
+          } @empty {
+            <div class="flex flex-col items-center justify-center h-40 text-gray-400">
+              <mat-icon class="!text-4xl mb-2">inbox</mat-icon>
+              <span>暂无模板</span>
+            </div>
+          }
+        </mat-nav-list>
+      </div>
+
+      <!-- Sidebar Toggle Handle (Desktop) -->
+      <div class="absolute top-1/2 -right-3 -translate-y-1/2 z-50 hidden md:flex">
+        <button (click)="sidebarService.toggle()" 
+            class="flex items-center justify-center w-6 h-12 rounded-r-xl bg-white dark:bg-slate-800 border border-l-0 border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all group cursor-pointer outline-none">
+            <mat-icon class="!text-[20px] text-gray-500 group-hover:text-blue-500 transition-transform" 
+                [class.rotate-180]="!isSidebarOpen()">chevron_left</mat-icon>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex flex-col min-w-0 relative h-full">
+    
+    <!-- Toolbar -->
+    <header class="h-16 flex items-center justify-between px-4 bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700">
+      <div class="flex items-center gap-4">
+        <button mat-icon-button (click)="toggleSidebar()" class="lg:hidden">
+          <mat-icon>menu</mat-icon>
+        </button>
+        @if (useCase.selectedTemplate(); as template) {
+          <div class="flex flex-col">
+            <h1 class="text-lg font-bold">{{ template.slug }}</h1>
+            <span class="text-xs text-gray-500">{{ template.description }}</span>
+          </div>
+        } @else {
+          <h1 class="text-lg font-bold">请选择提示词模板</h1>
+        }
+      </div>
+
+      <div class="flex items-center gap-2">
+        @if (useCase.isLoading()) {
+          <mat-spinner diameter="24"></mat-spinner>
+        }
+      </div>
+    </header>
+
+    <!-- Content Body -->
+    <div class="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 bg-gray-50 dark:bg-slate-900">
+      @if (useCase.selectedTemplate()) {
+        <div class="max-w-6xl mx-auto space-y-6">
+          
+          <!-- Version Selection & Management -->
+          <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Version List -->
+            <div class="lg:col-span-1 space-y-4">
+              <mat-card class="!rounded-2xl !border-0 !shadow-sm overflow-hidden">
+                <div class="p-4 bg-gray-100/50 dark:bg-slate-800/50 border-b border-gray-200 dark:border-slate-700">
+                  <h3 class="font-semibold flex items-center gap-2">
+                    <mat-icon class="!text-[18px]">history</mat-icon>
+                    历史版本
+                  </h3>
+                </div>
+                <mat-list class="p-0">
+                  @for (version of useCase.versions(); track version.id) {
+                    <mat-list-item 
+                      (click)="onSelectVersion(version)"
+                      [class.bg-white]="useCase.selectedVersion()?.id === version.id"
+                      [class.dark:bg-slate-700]="useCase.selectedVersion()?.id === version.id"
+                      class="cursor-pointer border-b last:border-0 border-gray-100 dark:border-slate-700">
+                      <div class="flex items-center justify-between w-full">
+                        <div class="flex flex-col">
+                          <span class="text-sm font-medium">{{ version.versionTag }}</span>
+                          <span class="text-[10px] text-gray-400">{{ version.createTime | date:'yyyy-MM-dd HH:mm' }}</span>
+                        </div>
+                        @if (version.isActive) {
+                          <span class="px-2 py-0.5 text-[10px] bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400 rounded-full font-bold uppercase tracking-wider">
+                            Active
+                          </span>
+                        }
+                      </div>
+                    </mat-list-item>
+                  }
+                </mat-list>
+              </mat-card>
+
+              @if (useCase.selectedVersion(); as version) {
+                @if (!version.isActive) {
+                  <button mat-flat-button color="primary" 
+                          class="w-full !rounded-xl !py-6"
+                          (click)="onActivate(version)">
+                    <mat-icon>check_circle</mat-icon>
+                    激活此版本
+                  </button>
+                }
+              }
+            </div>
+
+            <!-- Editor -->
+            <div class="lg:col-span-2 space-y-4">
+              <mat-card class="!rounded-2xl !border-0 !shadow-sm p-4 md:p-6 space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <h3 class="text-xl font-bold flex items-center gap-2">
+                    <mat-icon class="!text-blue-500">edit_note</mat-icon>
+                    {{ editModel.versionTag ? '创建新版本' : '查看/克隆版本' }}
+                  </h3>
+                  <div class="flex items-center gap-2">
+                    <mat-form-field appearance="outline" class="!mb-[-1.25em] w-40">
+                      <mat-label>新版本号</mat-label>
+                      <input matInput [(ngModel)]="editModel.versionTag" placeholder="如 v1.1.0">
+                    </mat-form-field>
+                    <button mat-flat-button color="primary" 
+                            class="!rounded-lg"
+                            [disabled]="!editModel.versionTag || !editModel.content || useCase.isLoading()"
+                            (click)="onSaveVersion()">
+                      <mat-icon>save</mat-icon>
+                      保存
+                    </button>
+                  </div>
+                </div>
+
+                <div class="space-y-4">
+                  <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>Prompt 内容</mat-label>
+                    <textarea matInput rows="12" [(ngModel)]="editModel.content" 
+                              placeholder="输入提示词内容，可以使用 {变量名} 语法"></textarea>
+                  </mat-form-field>
+
+                  <div class="space-y-2">
+                    <label class="text-sm font-medium text-gray-500">变量定义 (Variables)</label>
+                    <div class="flex flex-wrap gap-2 p-3 bg-gray-100/50 dark:bg-slate-800/50 rounded-xl border border-gray-200 dark:border-slate-700 min-h-[50px]">
+                      @for (variable of editModel.variables; track variable) {
+                        <mat-chip-row (removed)="removeVariable(variable)" class="!bg-white dark:!bg-slate-700 !border-0 !shadow-sm">
+                          {{ variable }}
+                          <button matChipRemove>
+                            <mat-icon>cancel</mat-icon>
+                          </button>
+                        </mat-chip-row>
+                      }
+                      <input placeholder="输入变量名回车添加..."
+                             class="bg-transparent border-0 focus:ring-0 text-sm flex-1 min-w-[120px]"
+                             (keyup.enter)="addVariable(variableInput)"
+                             #variableInput>
+                    </div>
+                  </div>
+                </div>
+              </mat-card>
+
+              <!-- Preview -->
+              <mat-card class="!rounded-2xl !border-0 !shadow-sm p-4 md:p-6 bg-blue-50/30 dark:bg-blue-900/10 border-blue-100 dark:border-blue-900/30 border">
+                 <h4 class="text-sm font-bold text-blue-600 dark:text-blue-400 mb-2 flex items-center gap-2 uppercase tracking-widest">
+                   <mat-icon class="!text-[16px]">visibility</mat-icon>
+                   预览
+                 </h4>
+                 <div class="text-sm leading-relaxed whitespace-pre-wrap text-gray-700 dark:text-gray-300 italic">
+                   {{ editModel.content || '暂无内容' }}
+                 </div>
+              </mat-card>
+            </div>
+
+          </section>
+
+        </div>
+      } @else {
+        <div class="flex flex-col items-center justify-center h-full text-gray-400">
+          <div class="w-24 h-24 rounded-full bg-gray-100 dark:bg-slate-800 flex items-center justify-center mb-4">
+             <mat-icon class="!text-5xl text-gray-300">auto_fix_high</mat-icon>
+          </div>
+          <h2 class="text-xl font-medium">请从左侧选择一个模板开始管理</h2>
+          <p class="text-sm mt-2">您可以查看历史版本、编辑新提示词并激活到生产环境。</p>
+        </div>
+      }
+    </div>
+
+  </main>
+</div>

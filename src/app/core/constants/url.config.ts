@@ -15,6 +15,10 @@ export const URLConfig = {
     EVENTS: {
         BASE: '/rest/dark/v1/time-limit-events'
     },
+    PROMPT: {
+        TEMPLATES: '/rest/biz/v1/prompts/templates',
+        VERSIONS: '/rest/biz/v1/prompts/versions'
+    },
     DEVICES: {
         // Future placeholders
     },

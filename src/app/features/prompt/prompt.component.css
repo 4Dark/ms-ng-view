@@ -1,0 +1,55 @@
+:host {
+  display: block;
+  height: 100vh;
+  width: 100%;
+}
+
+/* 覆盖 Material 组件样式以匹配整体设计 */
+::ng-deep .mat-mdc-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::ng-deep .mat-mdc-nav-list .mat-mdc-list-item {
+  height: auto !important;
+  padding: 8px !important;
+}
+
+::ng-deep .mat-mdc-list-item-title {
+  white-space: normal !important;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.5);
+}
+
+/* 动画效果 */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+  ::ng-deep .mat-mdc-form-field {
+    width: 100% !important;
+  }
+}

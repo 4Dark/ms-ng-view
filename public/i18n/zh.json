@@ -3,6 +3,15 @@
     "NAME": "ms-ng-view AI",
     "BRAND": "Timekeeper"
   },
+  "NAV": {
+    "CHAT": "智能对话",
+    "APPS": "所有功能页面",
+    "KNOWLEDGE": "知识管理",
+    "PROMPT": "提示词管理",
+    "DASHBOARD": "控制台",
+    "EVENTS": "活动列表",
+    "CUSTOMIZE": "界面定制"
+  },
   "SIDEBAR": {
     "RECENT": "最近记录",
     "NEW_CHAT": "开启新对话",

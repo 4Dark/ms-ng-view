@@ -2,11 +2,13 @@
 <header
     class="flex-shrink-0 flex items-center justify-between px-6 h-14 bg-white/80 dark:bg-[#1e1f20]/80 backdrop-blur-md border-b border-gray-200 dark:border-[#444746] z-50">
     <!-- Left: Sidebar Toggle + App Brand -->
-    <div class="flex items-center gap-2">
-        <button *ngIf="showSidebarToggle()" (click)="toggleSidebar()"
-            class="mr-2 flex items-center justify-center w-9 h-9 rounded-full text-gray-500 dark:text-[#c4c7c5] hover:bg-gray-100 dark:hover:bg-[#333537] transition-colors">
-            <mat-icon>menu</mat-icon>
+    <div class="flex items-center gap-1">
+        <button [matMenuTriggerFor]="appsMenu"
+            class="flex items-center justify-center w-9 h-9 rounded-full text-gray-500 dark:text-[#c4c7c5] hover:bg-gray-100 dark:hover:bg-[#333537] transition-colors"
+            [matTooltip]="'NAV.APPS' | translate">
+            <mat-icon>apps</mat-icon>
         </button>
+
         <div class="w-7 h-7 rounded-full bg-gradient-to-br from-blue-400 via-purple-400 to-red-400"></div>
         <span class="font-semibold text-sm tracking-tight text-gray-800 dark:text-[#e3e3e3]">AI</span>
     </div>
@@ -72,5 +74,32 @@
         </mat-menu>
         }
     </div>
+
+    <!-- Apps Menu -->
+    <mat-menu #appsMenu="matMenu" class="mt-2 !rounded-[28px] !shadow-2xl overflow-hidden border border-gray-100/50 dark:border-[#444746]/50">
+        <div class="p-4 w-80 bg-white dark:bg-[#1e1f20] overflow-hidden" (click)="$event.stopPropagation()">
+            <!-- Menu Header -->
+            <div class="px-2 pb-3 mb-2 border-b border-gray-100 dark:border-[#333537] flex items-center justify-between">
+                <span class="text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.1em]">{{ 'NAV.APPS' | translate }}</span>
+                <div class="flex gap-1">
+                    <div class="w-1.5 h-1.5 rounded-full bg-blue-500/50"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-purple-500/50"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-amber-500/50"></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-1">
+                @for (item of navItems; track item.path) {
+                <button (click)="navigateTo(item.path)"
+                    class="flex flex-col items-center p-4 rounded-[20px] hover:bg-gray-50 dark:hover:bg-[#333537] transition-colors duration-200 group cursor-pointer">
+                    <div [class]="'w-14 h-14 rounded-[18px] flex items-center justify-center shadow-sm ' + item.bgColor">
+                        <mat-icon [class]="'!text-[26px] !w-7 !h-7 flex items-center justify-center ' + item.color">{{ item.icon }}</mat-icon>
+                    </div>
+                    <span class="text-[11px] font-medium text-gray-600 dark:text-[#c4c7c5] text-center line-clamp-2 leading-tight px-0.5">{{ item.label | translate }}</span>
+                </button>
+                }
+            </div>
+        </div>
+    </mat-menu>
 </header>
 }

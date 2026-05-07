@@ -11,9 +11,9 @@
         class="fixed md:relative h-full z-50 flex-shrink-0 bg-gray-50 dark:bg-[#1e1f20] transition-all duration-300 ease-in-out border-r border-gray-200 dark:border-[#444746] shadow-2xl md:shadow-none"
         [class.w-72]="isSidebarOpen()" [class.w-0]="!isSidebarOpen()" [class.-translate-x-full]="!isSidebarOpen()"
         [class.translate-x-0]="isSidebarOpen()" [class.md:translate-x-0]="true"
-        [class.overflow-hidden]="!isSidebarOpen()">
+        [class.overflow-visible]="true">
 
-        <div class="p-4 h-full flex flex-col w-72">
+        <div class="p-4 h-full flex flex-col w-72" [class.hidden]="!isSidebarOpen()">
 
             <div class="flex-1 overflow-y-auto space-y-2">
                 <div
@@ -61,6 +61,15 @@
                     {{ 'SIDEBAR.SETTINGS' | translate }}
                 </button>
             </div>
+        </div>
+
+        <!-- Sidebar Toggle Handle (Desktop) -->
+        <div class="absolute top-1/2 -right-3 -translate-y-1/2 z-50 hidden md:flex">
+            <button (click)="toggleSidebar()" 
+                class="flex items-center justify-center w-6 h-12 rounded-r-xl bg-white dark:bg-[#1e1f20] border border-l-0 border-gray-200 dark:border-[#444746] shadow-sm hover:shadow-md transition-all group cursor-pointer outline-none">
+                <mat-icon class="!text-[20px] text-gray-500 group-hover:text-blue-500 transition-transform" 
+                    [class.rotate-180]="!isSidebarOpen()">chevron_left</mat-icon>
+            </button>
         </div>
     </aside>
 

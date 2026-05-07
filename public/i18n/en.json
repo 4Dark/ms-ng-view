@@ -3,6 +3,15 @@
     "NAME": "ms-ng-view AI",
     "BRAND": "Timekeeper"
   },
+  "NAV": {
+    "CHAT": "AI Chat",
+    "APPS": "All Features",
+    "KNOWLEDGE": "Knowledge Management",
+    "PROMPT": "Prompt Management",
+    "DASHBOARD": "Dashboard",
+    "EVENTS": "Event List",
+    "CUSTOMIZE": "Customize"
+  },
   "SIDEBAR": {
     "RECENT": "Recent",
     "NEW_CHAT": "New Chat",

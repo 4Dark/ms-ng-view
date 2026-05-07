@@ -8,6 +8,7 @@ import { EventListComponent } from './app/features/event-list/event-list.compone
 import { KnowledgeEmbeddingComponent } from './app/features/knowledge-embedding/knowledge-embedding.component';
 import { KnowledgeComponent } from './app/features/knowledge/knowledge.component';
 import { LandingComponent } from './app/features/landing/landing.component';
+import { PromptComponent } from './app/features/prompt/prompt.component';
 import { authGuard } from './app/core/guards/auth.guard';
 
 export const routes: Routes = [
@@ -23,4 +24,5 @@ export const routes: Routes = [
   { path: 'knowledge', component: KnowledgeComponent, canActivate: [authGuard] },
   { path: 'knowledge/embedding', component: KnowledgeEmbeddingComponent, canActivate: [authGuard] },
   { path: 'knowledge/embedding/:id', component: KnowledgeEmbeddingComponent, canActivate: [authGuard] },
+  { path: 'prompt', component: PromptComponent, canActivate: [authGuard] },
 ];
