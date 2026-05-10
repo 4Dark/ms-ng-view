@@ -1,6 +1,6 @@
 @if (shouldShow()) {
 <header
-    class="flex-shrink-0 flex items-center justify-between px-6 h-14 bg-white/80 dark:bg-[#1e1f20]/80 backdrop-blur-md border-b border-gray-200 dark:border-[#444746] z-50">
+    class="w-full overflow-hidden flex-shrink-0 flex items-center justify-between px-6 h-14 bg-white/80 dark:bg-[#1e1f20]/80 backdrop-blur-md border-b border-gray-200 dark:border-[#444746] z-50">
     <!-- Left: Sidebar Toggle + App Brand -->
     <div class="flex items-center gap-1">
         <button [matMenuTriggerFor]="appsMenu"
@@ -76,8 +76,8 @@
     </div>
 
     <!-- Apps Menu -->
-    <mat-menu #appsMenu="matMenu" class="mt-2 !rounded-[28px] !shadow-2xl overflow-hidden border border-gray-100/50 dark:border-[#444746]/50">
-        <div class="p-4 w-80 bg-white dark:bg-[#1e1f20] overflow-hidden" (click)="$event.stopPropagation()">
+    <mat-menu #appsMenu="matMenu" class="mt-2 !rounded-[28px] !shadow-2xl !max-w-none !overflow-hidden border border-gray-100/50 dark:border-[#444746]/50">
+        <div class="p-4 w-80 bg-white dark:bg-[#1e1f20] !overflow-x-hidden" (click)="$event.stopPropagation()">
             <!-- Menu Header -->
             <div class="px-2 pb-3 mb-2 border-b border-gray-100 dark:border-[#333537] flex items-center justify-between">
                 <span class="text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.1em]">{{ 'NAV.APPS' | translate }}</span>
@@ -91,7 +91,7 @@
             <div class="grid grid-cols-3 gap-1">
                 @for (item of navItems; track item.path) {
                 <button (click)="navigateTo(item.path)"
-                    class="flex flex-col items-center p-4 rounded-[20px] hover:bg-gray-50 dark:hover:bg-[#333537] transition-colors duration-200 group cursor-pointer">
+                    class="flex flex-col items-center gap-3 p-4 rounded-[20px] hover:bg-gray-50 dark:hover:bg-[#333537] transition-colors duration-200 group cursor-pointer">
                     <div [class]="'w-14 h-14 rounded-[18px] flex items-center justify-center shadow-sm ' + item.bgColor">
                         <mat-icon [class]="'!text-[26px] !w-7 !h-7 flex items-center justify-center ' + item.color">{{ item.icon }}</mat-icon>
                     </div>
