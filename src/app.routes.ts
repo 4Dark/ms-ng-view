@@ -25,4 +25,9 @@ export const routes: Routes = [
   { path: 'knowledge/embedding', component: KnowledgeEmbeddingComponent, canActivate: [authGuard] },
   { path: 'knowledge/embedding/:id', component: KnowledgeEmbeddingComponent, canActivate: [authGuard] },
   { path: 'prompt', component: PromptComponent, canActivate: [authGuard] },
+  { 
+    path: 'mcp-market', 
+    loadComponent: () => import('./app/features/mcp-market/mcp-market.component').then(m => m.McpMarketComponent),
+    canActivate: [authGuard] 
+  },
 ];

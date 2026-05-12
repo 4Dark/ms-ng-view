@@ -8,9 +8,39 @@
     "APPS": "所有功能页面",
     "KNOWLEDGE": "知识管理",
     "PROMPT": "提示词管理",
+    "MCP_MARKET": "能力集",
     "DASHBOARD": "控制台",
     "EVENTS": "活动列表",
     "CUSTOMIZE": "界面定制"
+  },
+  "MCP_MARKET": {
+    "TITLE": "能力集 & 插件库",
+    "SUBTITLE": "管理 AI Agent 的核心能力，按需开启经过测试的 MCP 服务端插件。",
+    "ENABLED": "已启用",
+    "DISABLED": "已禁用",
+    "EMPTY": "暂无可用插件",
+    "EMPTY_SUB": "系统当前未注册任何 MCP 服务端，请联系管理员配置。",
+    "TIP_TITLE": "💡 提示",
+    "TIP_CONTENT": "开启或关闭插件后，新的会话将自动应用这些变更。当前正在进行的对话可能需要刷新页面以同步最新的能力集。",
+    "ADD_PLUGIN": "新增 MCP 服务",
+    "REFRESH_TOOLS": "更新插件能力",
+    "DIALOG": {
+      "TITLE": "注册新 MCP 服务端",
+      "TITLE_EDIT": "编辑 MCP 服务信息",
+      "NAME": "唯一标识 (Name)",
+      "NAME_HINT": "用于系统内部路由，建议使用小写字母和连字符",
+      "TITLE_LABEL": "显示名称 (Title)",
+      "DESC": "功能描述",
+      "ICON": "图标名称 (Material Icon)",
+      "TYPE": "连接类型",
+      "URL": "SSE 端点 URL",
+      "URL_HINT": "以 http:// 或 https:// 开头的完整路径",
+      "SAVE": "确认注册并拉取 Schema",
+      "VALIDATION": {
+        "REQUIRED": "此项为必填项",
+        "URL_INVALID": "请输入有效的 URL 地址"
+      }
+    }
   },
   "SIDEBAR": {
     "RECENT": "最近记录",
@@ -78,7 +108,9 @@
     "CANCEL": "取消",
     "DELETE": "删除",
     "SAVE": "保存",
-    "SAVING": "正在保存..."
+    "SAVING": "正在保存...",
+    "REFRESH": "刷新列表",
+    "LOADING": "加载中"
   },
   "KNOWLEDGE": {
     "TITLE": "知识空间",
