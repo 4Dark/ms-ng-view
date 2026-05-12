@@ -15,6 +15,15 @@ export const URLConfig = {
     EVENTS: {
         BASE: '/rest/dark/v1/time-limit-events'
     },
+    PROMPT: {
+        TEMPLATES: '/rest/biz/v1/prompts/templates',
+        VERSIONS: '/rest/biz/v1/prompts/versions'
+    },
+    MCP: {
+        PLUGINS: '/rest/biz/v1/mcp-plugins',
+        TOGGLE: (id: string) => `/rest/biz/v1/mcp-plugins/${id}/toggle`,
+        REFRESH: (id: string) => `/rest/biz/v1/mcp-plugins/${id}/refresh`
+    },
     DEVICES: {
         // Future placeholders
     },

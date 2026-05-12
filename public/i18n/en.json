@@ -3,6 +3,45 @@
     "NAME": "ms-ng-view AI",
     "BRAND": "Timekeeper"
   },
+  "NAV": {
+    "CHAT": "AI Chat",
+    "APPS": "All Features",
+    "KNOWLEDGE": "Knowledge Management",
+    "PROMPT": "Prompt Hub",
+    "MCP_MARKET": "Capability Set",
+    "DASHBOARD": "Overview",
+    "EVENTS": "Event List",
+    "CUSTOMIZE": "Customize"
+  },
+  "MCP_MARKET": {
+    "TITLE": "Capability Set & Plugin Market",
+    "SUBTITLE": "Manage core capabilities of the AI Agent, enabling tested MCP server plugins as needed.",
+    "ENABLED": "Enabled",
+    "DISABLED": "Disabled",
+    "EMPTY": "No plugins available",
+    "EMPTY_SUB": "No MCP servers are currently registered. Please contact the administrator.",
+    "TIP_TITLE": "💡 Tip",
+    "TIP_CONTENT": "After enabling or disabling plugins, new sessions will automatically apply these changes. Ongoing conversations may require a page refresh to synchronize the latest capabilities.",
+    "ADD_PLUGIN": "Add MCP Service",
+    "REFRESH_TOOLS": "Update Plugin Capabilities",
+    "DIALOG": {
+      "TITLE": "Register New MCP Server",
+      "TITLE_EDIT": "Edit MCP Service Info",
+      "NAME": "Identifier (Name)",
+      "NAME_HINT": "Used for internal routing, lowercase and hyphens recommended",
+      "TITLE_LABEL": "Display Title",
+      "DESC": "Description",
+      "ICON": "Icon Name (Material Icon)",
+      "TYPE": "Connection Type",
+      "URL": "SSE Endpoint URL",
+      "URL_HINT": "Full path starting with http:// or https://",
+      "SAVE": "Register & Fetch Schema",
+      "VALIDATION": {
+        "REQUIRED": "This field is required",
+        "URL_INVALID": "Please enter a valid URL"
+      }
+    }
+  },
   "SIDEBAR": {
     "RECENT": "Recent",
     "NEW_CHAT": "New Chat",
@@ -69,7 +108,9 @@
     "CANCEL": "Cancel",
     "DELETE": "Delete",
     "SAVE": "Save",
-    "SAVING": "Saving..."
+    "SAVING": "Saving...",
+    "REFRESH": "Refresh List",
+    "LOADING": "Loading"
   },
   "KNOWLEDGE": {
     "TITLE": "Knowledge Space",

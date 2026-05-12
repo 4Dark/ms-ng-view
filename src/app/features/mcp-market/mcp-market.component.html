@@ -1,0 +1,113 @@
+<div class="container mx-auto p-8 max-w-6xl">
+  <!-- Header Section -->
+  <header class="mb-12 relative">
+    <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl -z-10"></div>
+    <div class="absolute top-0 right-0 w-60 h-60 bg-purple-500/10 rounded-full blur-3xl -z-10"></div>
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <h1 class="text-4xl font-extrabold mb-3 flex items-center gap-3 tracking-tight">
+          <span class="gradient-text">{{ 'MCP_MARKET.TITLE' | translate }}</span>
+          <div class="px-2 py-1 bg-primary/10 rounded text-[10px] font-bold text-primary border border-primary/20 uppercase">Beta</div>
+        </h1>
+        <p class="text-gray-500 text-lg max-w-2xl leading-relaxed">
+          {{ 'MCP_MARKET.SUBTITLE' | translate }}
+        </p>
+      </div>
+      
+      <div class="flex gap-2">
+        <button mat-flat-button color="primary" (click)="openAddDialog()" class="!rounded-lg">
+          <mat-icon>add</mat-icon>
+          {{ 'MCP_MARKET.ADD_PLUGIN' | translate }}
+        </button>
+        <button mat-stroked-button (click)="mcpUseCase.loadPlugins()" [disabled]="mcpUseCase.isLoading()" class="!rounded-lg">
+          <mat-icon [class.animate-spin]="mcpUseCase.isLoading()">refresh</mat-icon>
+          {{ 'COMMON.REFRESH' | translate }}
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Loading State -->
+  <div *ngIf="mcpUseCase.isLoading()" class="flex flex-col items-center justify-center py-20 gap-4">
+    <mat-progress-spinner mode="indeterminate" diameter="48" strokeWidth="3" color="primary"></mat-progress-spinner>
+    <p class="text-sm text-gray-400 animate-pulse">{{ 'COMMON.LOADING' | translate }}...</p>
+  </div>
+
+  <!-- Plugin Grid -->
+  <div *ngIf="!mcpUseCase.isLoading()" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    @for (plugin of mcpUseCase.plugins(); track plugin.id) {
+      <mat-card class="mcp-card !rounded-xl border-none !bg-white dark:!bg-gray-800/50" [class.mcp-card-active]="plugin.enabled">
+        <div class="p-5 flex-grow">
+          <div class="flex justify-between items-start mb-4">
+            <div class="icon-box flex items-center justify-center bg-gray-50 dark:bg-gray-700 rounded-lg w-12 h-12 shadow-sm">
+              <mat-icon class="!text-[24px] text-gray-700 dark:text-gray-200">{{ plugin.icon || 'settings' }}</mat-icon>
+            </div>
+            <div class="flex flex-col items-end gap-1.5">
+              <span class="status-badge !px-2 !py-0.5 !text-[10px]" [class.bg-green-100]="plugin.enabled" [class.text-green-700]="plugin.enabled" 
+                    [class.bg-gray-100]="!plugin.enabled" [class.text-gray-500]="!plugin.enabled">
+                {{ (plugin.enabled ? 'MCP_MARKET.ENABLED' : 'MCP_MARKET.DISABLED') | translate }}
+              </span>
+              <span class="text-[9px] font-bold text-gray-300 dark:text-gray-600 uppercase tracking-widest">{{ plugin.type }}</span>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-bold mb-1.5 text-gray-900 dark:text-white truncate">{{ plugin.title }}</h3>
+          <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2 h-8">
+            {{ plugin.description }}
+          </p>
+        </div>
+
+        <div class="px-5 py-3 border-t border-gray-50 dark:border-gray-700/50 flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/30">
+          <div class="flex items-center gap-1">
+             <button mat-icon-button (click)="onRefresh(plugin)" class="!w-8 !h-8 !leading-8" [matTooltip]="'MCP_MARKET.REFRESH_TOOLS' | translate">
+               <mat-icon class="!text-sm text-gray-400 hover:text-primary transition-colors">sync</mat-icon>
+             </button>
+             <button mat-icon-button (click)="openEditDialog(plugin)" class="!w-8 !h-8 !leading-8" matTooltip="Edit Plugin">
+               <mat-icon class="!text-sm text-gray-400 hover:text-primary transition-colors">edit</mat-icon>
+             </button>
+             <div class="flex -space-x-1.5 ml-1">
+               <div class="w-5 h-5 rounded-full bg-blue-100 border-2 border-white dark:border-gray-800 flex items-center justify-center">
+                 <mat-icon class="!text-[10px] text-blue-600">bolt</mat-icon>
+               </div>
+               <div class="w-5 h-5 rounded-full bg-purple-100 border-2 border-white dark:border-gray-800 flex items-center justify-center">
+                 <mat-icon class="!text-[10px] text-purple-600">auto_awesome</mat-icon>
+               </div>
+             </div>
+          </div>
+          
+          <mat-slide-toggle 
+            [checked]="plugin.enabled" 
+            (change)="onToggle(plugin)"
+            color="primary"
+            class="compact-toggle">
+          </mat-slide-toggle>
+        </div>
+      </mat-card>
+    } @empty {
+      <div class="col-span-full flex flex-col items-center justify-center py-24 glass-panel rounded-3xl border-2 border-dashed border-gray-200 dark:border-gray-700">
+        <div class="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-4">
+          <mat-icon class="!text-[40px] text-gray-300">extension_off</mat-icon>
+        </div>
+        <h3 class="text-xl font-bold text-gray-400 mb-1">{{ 'MCP_MARKET.EMPTY' | translate }}</h3>
+        <p class="text-gray-500">{{ 'MCP_MARKET.EMPTY_SUB' | translate }}</p>
+      </div>
+    }
+  </div>
+
+  <!-- Footer Tip -->
+  <footer class="mt-16 p-6 glass-panel rounded-2xl border border-primary/10 shadow-sm relative overflow-hidden group">
+    <div class="absolute top-0 left-0 w-1 h-full bg-primary transition-all duration-300 group-hover:w-2"></div>
+    <div class="flex gap-4 relative z-10">
+      <div class="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+        <mat-icon class="text-primary">lightbulb</mat-icon>
+      </div>
+      <div>
+        <h4 class="font-bold text-gray-900 dark:text-white mb-1">{{ 'MCP_MARKET.TIP_TITLE' | translate }}</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          {{ 'MCP_MARKET.TIP_CONTENT' | translate }}
+        </p>
+      </div>
+    </div>
+  </footer>
+</div>

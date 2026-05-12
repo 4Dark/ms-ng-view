@@ -11,14 +11,21 @@
         class="fixed md:relative h-full z-50 flex-shrink-0 bg-gray-50 dark:bg-[#1e1f20] transition-all duration-300 ease-in-out border-r border-gray-200 dark:border-[#444746] shadow-2xl md:shadow-none"
         [class.w-72]="isSidebarOpen()" [class.w-0]="!isSidebarOpen()" [class.-translate-x-full]="!isSidebarOpen()"
         [class.translate-x-0]="isSidebarOpen()" [class.md:translate-x-0]="true"
-        [class.overflow-hidden]="!isSidebarOpen()">
+        [class.overflow-visible]="true">
 
-        <div class="p-4 h-full flex flex-col w-72">
+        <div class="p-4 h-full flex flex-col w-72" [class.hidden]="!isSidebarOpen()">
 
             <div class="flex-1 overflow-y-auto space-y-2">
                 <div
                     class="px-3 py-2 text-xs font-medium text-gray-500 dark:text-[#8e918f] uppercase tracking-wider flex justify-between items-center">
-                    {{ 'SIDEBAR.RECENT' | translate }}
+                    <div class="flex items-center gap-2">
+                        <!-- Mobile Close Button -->
+                        <button (click)="toggleSidebar()" class="md:hidden -ml-1 p-1 hover:bg-gray-200 dark:hover:bg-[#333537] rounded-full transition-colors"
+                            [title]="'COMMON.CLOSE' | translate">
+                            <mat-icon class="!text-[18px]">close</mat-icon>
+                        </button>
+                        {{ 'SIDEBAR.RECENT' | translate }}
+                    </div>
                     <button (click)="createNewSession()" class="text-primary hover:text-primary-dark transition-colors"
                         [title]="'SIDEBAR.NEW_CHAT' | translate">
                         <mat-icon class="!text-[16px]">add</mat-icon>
@@ -54,6 +61,15 @@
                     {{ 'SIDEBAR.SETTINGS' | translate }}
                 </button>
             </div>
+        </div>
+
+        <!-- Sidebar Toggle Handle (Desktop) -->
+        <div class="absolute top-1/2 -right-3 -translate-y-1/2 z-50 hidden md:flex">
+            <button (click)="toggleSidebar()" 
+                class="flex items-center justify-center w-6 h-12 rounded-r-xl bg-white dark:bg-[#1e1f20] border border-l-0 border-gray-200 dark:border-[#444746] shadow-sm hover:shadow-md transition-all group cursor-pointer outline-none">
+                <mat-icon class="!text-[20px] text-gray-500 group-hover:text-blue-500 transition-transform" 
+                    [class.rotate-180]="!isSidebarOpen()">chevron_left</mat-icon>
+            </button>
         </div>
     </aside>
 
@@ -278,7 +294,7 @@
                 }
 
                 <div
-                    class="bg-gray-100 dark:bg-[#1e1f20] rounded-[28px] p-2 flex items-end gap-2 border border-transparent focus-within:border-gray-300 dark:focus-within:border-[#444746] focus-within:bg-white dark:focus-within:bg-[#2a2b2d] transition-colors relative shadow-lg">
+                    class="bg-gray-100 dark:bg-[#1e1f20] rounded-[28px] p-1.5 md:p-2 flex items-end gap-1 md:gap-2 border border-transparent focus-within:border-gray-300 dark:focus-within:border-[#444746] focus-within:bg-white dark:focus-within:bg-[#2a2b2d] transition-colors relative shadow-lg">
 
                     <!-- Hidden File Input -->
                     <input type="file" #fileInput multiple hidden (change)="onFileSelected($event)">
@@ -342,7 +358,7 @@
                     <textarea [(ngModel)]="userInput" [ngModelOptions]="{ debounce: 300 }"
                         (keydown.enter)="$event.preventDefault(); sendMessage(inputField.value)"
                         [placeholder]="isCookMode() ? '描述你想吃的或让 AI 为你推荐...' : ('CHAT.PLACEHOLDER' | translate)"
-                        class="w-full bg-transparent border-none text-gray-900 dark:text-[#e3e3e3] placeholder-gray-500 dark:placeholder-[#8e918f] resize-none py-3 px-2 max-h-32 focus:ring-0 text-base custom-scrollbar"
+                        class="w-full bg-transparent border-none text-gray-900 dark:text-[#e3e3e3] placeholder-gray-500 dark:placeholder-[#8e918f] placeholder:text-xs resize-none py-3 px-2 max-h-32 focus:ring-0 text-base custom-scrollbar"
                         rows="1" style="min-height: 48px;" #inputField></textarea>
 
                     <div class="flex items-center gap-1 mb-1 mr-1">

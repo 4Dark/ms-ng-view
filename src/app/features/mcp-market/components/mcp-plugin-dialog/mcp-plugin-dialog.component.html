@@ -1,0 +1,71 @@
+<h2 mat-dialog-title class="!text-2xl !font-extrabold flex items-center gap-2">
+  <mat-icon class="text-primary">{{ data ? 'edit_note' : 'add_circle' }}</mat-icon>
+  {{ (data ? 'MCP_MARKET.DIALOG.TITLE_EDIT' : 'MCP_MARKET.DIALOG.TITLE') | translate }}
+</h2>
+
+<mat-dialog-content class="!pt-4">
+  <form [formGroup]="form" class="flex flex-col gap-4">
+    <div class="grid grid-cols-2 gap-4">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>{{ 'MCP_MARKET.DIALOG.TITLE_LABEL' | translate }}</mat-label>
+        <input matInput formControlName="title" placeholder="Google Search">
+        <mat-error *ngIf="form.get('title')?.hasError('required')">
+          {{ 'MCP_MARKET.DIALOG.VALIDATION.REQUIRED' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>{{ 'MCP_MARKET.DIALOG.NAME' | translate }}</mat-label>
+        <input matInput formControlName="name" placeholder="google-search">
+        <mat-hint>{{ 'MCP_MARKET.DIALOG.NAME_HINT' | translate }}</mat-hint>
+        <mat-error *ngIf="form.get('name')?.hasError('required')">
+          {{ 'MCP_MARKET.DIALOG.VALIDATION.REQUIRED' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'MCP_MARKET.DIALOG.DESC' | translate }}</mat-label>
+      <textarea matInput formControlName="description" rows="2"></textarea>
+    </mat-form-field>
+
+    <div class="grid grid-cols-2 gap-4">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'MCP_MARKET.DIALOG.ICON' | translate }}</mat-label>
+        <input matInput formControlName="icon" placeholder="search">
+        <mat-icon matSuffix>{{ form.get('icon')?.value || 'settings' }}</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'MCP_MARKET.DIALOG.TYPE' | translate }}</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value="sse">SSE (Server-Sent Events)</mat-option>
+          <mat-option value="stdio" disabled>Stdio (Local - Coming soon)</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" *ngIf="form.get('type')?.value === 'sse'">
+      <mat-label>{{ 'MCP_MARKET.DIALOG.URL' | translate }}</mat-label>
+      <input matInput formControlName="url" placeholder="http://localhost:3001/sse">
+      <mat-hint>{{ 'MCP_MARKET.DIALOG.URL_HINT' | translate }}</mat-hint>
+      <mat-error *ngIf="form.get('url')?.hasError('required')">
+        {{ 'MCP_MARKET.DIALOG.VALIDATION.REQUIRED' | translate }}
+      </mat-error>
+      <mat-error *ngIf="form.get('url')?.hasError('pattern')">
+        {{ 'MCP_MARKET.DIALOG.VALIDATION.URL_INVALID' | translate }}
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="!pb-6 !px-6">
+  <button mat-button mat-dialog-close>{{ 'COMMON.CANCEL' | translate }}</button>
+  <button mat-flat-button color="primary" 
+          [disabled]="form.invalid" 
+          (click)="submit()"
+          class="!rounded-lg px-6">
+    <mat-icon class="mr-1">auto_awesome</mat-icon>
+    {{ 'MCP_MARKET.DIALOG.SAVE' | translate }}
+  </button>
+</mat-dialog-actions>

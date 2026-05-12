@@ -1,0 +1,80 @@
+:host {
+  display: block;
+  height: 100vh;
+  width: 100%;
+}
+
+/* 覆盖 Material 组件样式以匹配整体设计 */
+::ng-deep .mat-mdc-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::ng-deep .mat-mdc-nav-list .mat-mdc-list-item {
+  height: auto !important;
+  padding: 8px !important;
+}
+
+::ng-deep .mat-mdc-list-item-title {
+  white-space: normal !important;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.5);
+}
+
+/* 动画效果 */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 移除 MatFormField 选中后的蓝色边框/高亮 */
+::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-width: 1px !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+.dark ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.dark ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.dark ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* 移除浮动 Label 的颜色变化 */
+::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+  color: inherit !important;
+}
+
+/* 消息提示样式 */
+::ng-deep .success-snackbar {
+  --mdc-snackbar-container-color: #10b981;
+  --mdc-snackbar-supporting-text-color: #fff;
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+  ::ng-deep .mat-mdc-form-field {
+    width: 100% !important;
+  }
+}

@@ -41,6 +41,17 @@ export class MsHeaderComponent implements OnInit {
     private router = inject(Router);
     private languageService = inject(LanguageService);
     private dialog = inject(MatDialog);
+    private sidebarService = inject(SidebarService);
+
+    protected navItems = [
+        { label: 'NAV.CHAT', icon: 'chat_bubble', path: '/chat', color: 'text-blue-600 dark:text-blue-400', bgColor: 'bg-blue-50 dark:bg-blue-900/30' },
+        { label: 'NAV.KNOWLEDGE', icon: 'auto_stories', path: '/knowledge', color: 'text-purple-600 dark:text-purple-400', bgColor: 'bg-purple-50 dark:bg-purple-900/30' },
+        { label: 'NAV.PROMPT', icon: 'terminal', path: '/prompt', color: 'text-amber-600 dark:text-amber-400', bgColor: 'bg-amber-50 dark:bg-amber-900/30' },
+        { label: 'NAV.MCP_MARKET', icon: 'extension', path: '/mcp-market', color: 'text-orange-600 dark:text-orange-400', bgColor: 'bg-orange-50 dark:bg-orange-900/30' },
+        { label: 'NAV.DASHBOARD', icon: 'dashboard', path: '/landing/dashboard', color: 'text-emerald-600 dark:text-emerald-400', bgColor: 'bg-emerald-50 dark:bg-emerald-900/30' },
+        { label: 'NAV.EVENTS', icon: 'list_alt', path: '/landing/events', color: 'text-rose-600 dark:text-rose-400', bgColor: 'bg-rose-50 dark:bg-rose-900/30' },
+        { label: 'NAV.CUSTOMIZE', icon: 'palette', path: '/landing/customize', color: 'text-indigo-600 dark:text-indigo-400', bgColor: 'bg-indigo-50 dark:bg-indigo-900/30' },
+    ];
 
     /** 外部控制显示隐藏 */
     visible = input<boolean>(true);
@@ -54,7 +65,10 @@ export class MsHeaderComponent implements OnInit {
     
     /** 当前路由状态 */
     protected currentUrl = signal('');
-    protected showSidebarToggle = computed(() => this.currentUrl().includes('/chat'));
+    protected showSidebarToggle = computed(() => {
+        const url = this.currentUrl();
+        return url.includes('/chat') || url.includes('/knowledge');
+    });
 
     /** 综合判断是否显示 */
     protected shouldShow = computed(() => {
@@ -65,10 +79,16 @@ export class MsHeaderComponent implements OnInit {
         return isVisible && !inBlackList;
     });
 
-    private sidebarService = inject(SidebarService);
-    
+    protected navigateTo(path: string) {
+        this.router.navigate([path]);
+    }
+
     protected toggleSidebar() {
         this.sidebarService.toggle();
+    }
+
+    protected isSidebarOpen() {
+        return this.sidebarService.isOpen();
     }
 
     protected readonly document = document;

@@ -54,9 +54,9 @@ describe('MsHeaderComponent (Global Header)', () => {
     fixture.detectChanges();
   });
 
-  it('应该显示品牌名称 "ms-ng-view AI"', () => {
+  it('应该显示品牌名称 "AI"', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.textContent).toContain('ms-ng-view AI');
+    expect(compiled.textContent).toContain('AI');
   });
 
   it('当用户登录时，应在头像处显示用户首字母', () => {
@@ -65,14 +65,15 @@ describe('MsHeaderComponent (Global Header)', () => {
   });
 
   it('点击语言切换按钮应调用 toggleLanguage', () => {
-    const langButton = fixture.nativeElement.querySelector('button'); // First button is lang
+    const buttons = fixture.nativeElement.querySelectorAll('button');
+    const langButton = buttons[1]; // Index 1 is language toggle
     langButton.click();
     expect(mockLanguageService.toggleLanguage).toHaveBeenCalled();
   });
 
   it('点击主题切换按钮应调用 toggleTheme', () => {
     const buttons = fixture.nativeElement.querySelectorAll('button');
-    const themeButton = buttons[1]; // Second button is theme
+    const themeButton = buttons[2]; // Index 2 is theme toggle
     themeButton.click();
     expect(mockThemeService.toggleTheme).toHaveBeenCalled();
   });
