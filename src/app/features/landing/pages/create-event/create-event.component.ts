@@ -11,9 +11,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router, RouterLink } from '@angular/router';
-import { TimerService } from '../../core/services/timer.service';
-import { TimeLimitedEvent } from '../../core/domain/event/event.model';
-import { EventUseCase } from '../../core/use-cases/event/event.usecase';
+import { TimerService } from '../../../../core/services/timer.service';
+import { TimeLimitedEvent } from '../../../../core/domain/event/event.model';
+import { EventUseCase } from '../../../../core/use-cases/event/event.usecase';
 
 @Component({
   selector: 'app-create-event',

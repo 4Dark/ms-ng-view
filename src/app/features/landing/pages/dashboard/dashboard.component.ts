@@ -9,9 +9,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router, RouterLink } from '@angular/router';
-import { TimeLimitedEvent } from '../../core/domain/event/event.model';
-import { EventUseCase } from '../../core/use-cases/event/event.usecase';
+import { TimeLimitedEvent } from '../../../../core/domain/event/event.model';
+import { EventUseCase } from '../../../../core/use-cases/event/event.usecase';
+import { SidebarService } from '../../../../core/services/sidebar.service';
 import { EventEditDialogComponent } from './event-edit-dialog/event-edit-dialog.component';
+import { MsHeaderComponent } from '../../../../shared/components/ms-header/ms-header.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +29,8 @@ import { EventEditDialogComponent } from './event-edit-dialog/event-edit-dialog.
     MatFormFieldModule,
     MatMenuModule,
     MatSnackBarModule,
-    EventEditDialogComponent
+    EventEditDialogComponent,
+    MsHeaderComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
@@ -37,12 +40,19 @@ export class DashboardComponent {
   protected useCase = inject(EventUseCase);
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
+  private sidebarService = inject(SidebarService);
 
   protected readonly String = String;
 
   // UI-only states
   editingEvent = signal<TimeLimitedEvent | null>(null);
   showEditDialog = signal(false);
+
+  protected toggleSidebar() {
+    this.sidebarService.toggle();
+  }
+
+  isSidebarOpen = this.sidebarService.isOpen;
 
   // Delegated states for template
   allEvents = this.useCase.allEvents;
