@@ -3,7 +3,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
 import { ChatRepository } from '../../domain/chat/chat-repository.interface';
 import { ChatMessage, ChatSessionDto } from '../../domain/chat/chat.model';
-import { URLConfig } from '../../constants/url.config';
+import { URLConfig } from '../../infrastructure/constants/url.config';
 
 /**
  * 聊天会话 API 适配器实现。

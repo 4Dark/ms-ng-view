@@ -13,7 +13,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { SidebarService } from '../../core/services/sidebar.service';
+import { SidebarService } from '../../core/infrastructure/services/sidebar.service';
 import { PromptUseCase } from '../../core/use-cases/prompt.use-case';
 import { PromptTemplate, PromptVersion } from '../../core/domain/prompt.model';
 

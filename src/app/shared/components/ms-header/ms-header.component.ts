@@ -8,12 +8,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { environment } from '@/environments/environment';
-import { URLConfig } from '@/app/core/constants/url.config';
-import { ThemeService } from '../../../core/services/theme.service';
-import { UserService } from '../../../core/services/user.service';
-import { LanguageService } from '../../../core/services/language.service';
-import { AuthService } from '../../../core/services/auth.service';
-import { SidebarService } from '../../../core/services/sidebar.service';
+import { URLConfig } from '@/app/core/infrastructure/constants/url.config';
+import { ThemeService } from '../../../core/infrastructure/services/theme.service';
+import { UserService } from '../../../core/infrastructure/services/user.service';
+import { LanguageService } from '../../../core/infrastructure/services/language.service';
+import { AuthService } from '../../../core/infrastructure/services/auth.service';
+import { SidebarService } from '../../../core/infrastructure/services/sidebar.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SettingsDialogComponent } from '../settings-dialog/settings-dialog.component';
@@ -48,7 +48,7 @@ export class MsHeaderComponent implements OnInit {
         { label: 'NAV.KNOWLEDGE', icon: 'auto_stories', path: '/knowledge', color: 'text-purple-600 dark:text-purple-400', bgColor: 'bg-purple-50 dark:bg-purple-900/30' },
         { label: 'NAV.PROMPT', icon: 'terminal', path: '/prompt', color: 'text-amber-600 dark:text-amber-400', bgColor: 'bg-amber-50 dark:bg-amber-900/30' },
         { label: 'NAV.MCP_MARKET', icon: 'extension', path: '/mcp-market', color: 'text-orange-600 dark:text-orange-400', bgColor: 'bg-orange-50 dark:bg-orange-900/30' },
-        { label: 'NAV.DASHBOARD', icon: 'timer', path: '/landing/dashboard', color: 'text-emerald-600 dark:text-emerald-400', bgColor: 'bg-emerald-50 dark:bg-emerald-900/30' },
+        { label: 'NAV.DASHBOARD', icon: 'timer', path: '/countdown/dashboard', color: 'text-emerald-600 dark:text-emerald-400', bgColor: 'bg-emerald-50 dark:bg-emerald-900/30' },
     ];
 
     /** 外部控制显示隐藏 */
@@ -65,7 +65,7 @@ export class MsHeaderComponent implements OnInit {
     protected currentUrl = signal('');
     protected showSidebarToggle = computed(() => {
         const url = this.currentUrl();
-        return url.includes('/chat') || url.includes('/knowledge') || url.includes('/landing/dashboard');
+        return url.includes('/chat') || url.includes('/knowledge') || url.includes('/countdown/dashboard');
     });
 
     /** 综合判断是否显示 */

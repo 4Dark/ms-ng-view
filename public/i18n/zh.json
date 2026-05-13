@@ -166,5 +166,47 @@
       "SAVE_EDIT": "确认修改",
       "CANCEL": "取消"
     }
+  },
+  "COUNTDOWN": {
+    "TITLE": "倒计时",
+    "EVENT_CATEGORIES": "事件分类",
+    "ALL_EVENTS": "所有事件",
+    "ANNIVERSARIES": "纪念日",
+    "BIRTHDAYS": "生日",
+    "HOLIDAYS": "节假日",
+    "PRO_MEMBER": "高级会员",
+    "STATS": {
+      "TOTAL_EVENTS": "总事件数",
+      "VIEW_ALL": "查看所有",
+      "THIS_MONTH": "本月",
+      "FILTER_MONTH": "筛选本月",
+      "NEXT_UPCOMING": "即将到来",
+      "VIEW_DETAILS": "查看详情",
+      "CATEGORIES": "总分类数",
+      "VIEW_BREAKDOWN": "查看细分"
+    },
+    "DASHBOARD": "我的看板",
+    "SEARCH_EVENTS": "搜索事件...",
+    "CREATE_NEW": "创建新事件",
+    "PAST_EVENT": "已过期事件",
+    "DAYS": "天",
+    "HRS": "时",
+    "MINS": "分",
+    "SECS": "秒",
+    "NO_EVENTS": "未找到事件",
+    "TRY_ADJUSTING": "请尝试调整您的搜索或筛选条件",
+    "NO_UPCOMING_FOUND": "📅 未找到即将到来的事件",
+    "EDIT": {
+      "TITLE": "编辑事件",
+      "EVENT_TITLE": "事件标题",
+      "CATEGORY": "分类",
+      "SELECT_CATEGORY": "选择分类",
+      "DATE": "日期",
+      "PICK_DATE": "选择日期",
+      "TIME": "时间 (选填)",
+      "DESCRIPTION": "描述",
+      "CANCEL": "取消",
+      "SAVE": "保存更改"
+    }
   }
 }

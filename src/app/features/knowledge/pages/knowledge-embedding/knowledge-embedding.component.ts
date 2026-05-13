@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { KnowledgeUseCase } from '../../core/use-cases/knowledge/knowledge.usecase';
+import { KnowledgeUseCase } from '../../../../core/use-cases/knowledge/knowledge.usecase';
 import { KlStepPreparationComponent } from './components/step-preparation/kl-step-preparation.component';
 import { KlStepIndexingComponent } from './components/step-indexing/kl-step-indexing.component';
 import { KlStepRetrievalComponent } from './components/step-retrieval/kl-step-retrieval.component';

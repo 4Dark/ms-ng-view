@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { KnowledgeApiAdapter } from '@/app/core/adapters/knowledge/knowledge-api.adapter';
-import { URLConfig } from '@/app/core/constants/url.config';
+import { URLConfig } from '@/app/core/infrastructure/constants/url.config';
 
 describe('KnowledgeApiAdapter', () => {
   let adapter: KnowledgeApiAdapter;

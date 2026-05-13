@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { URLConfig } from '../constants/url.config';
+import { URLConfig } from '../infrastructure/constants/url.config';
 import { PromptTemplate, PromptVersion, CreateVersionRequest } from '../domain/prompt.model';
 
 @Injectable({

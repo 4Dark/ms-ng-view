@@ -1,4 +1,4 @@
-import { URLConfig } from '@/app/core/constants/url.config';
+import { URLConfig } from '@/app/core/infrastructure/constants/url.config';
 import { environment } from '@/environments/environment';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, inject, signal } from '@angular/core';
@@ -13,9 +13,9 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MarkdownComponent } from 'ngx-markdown';
 import { Topic } from '../../core/domain/knowledge/knowledge.model';
-import { AuthService } from '../../core/services/auth.service';
-import { SidebarService } from '../../core/services/sidebar.service';
-import { UserService } from '../../core/services/user.service';
+import { AuthService } from '../../core/infrastructure/services/auth.service';
+import { SidebarService } from '../../core/infrastructure/services/sidebar.service';
+import { UserService } from '../../core/infrastructure/services/user.service';
 import { ChatUseCase } from '../../core/use-cases/chat/chat.usecase';
 import { KnowledgeUseCase } from '../../core/use-cases/knowledge/knowledge.usecase';
 import { SettingsDialogComponent } from '../../shared/components/settings-dialog/settings-dialog.component';

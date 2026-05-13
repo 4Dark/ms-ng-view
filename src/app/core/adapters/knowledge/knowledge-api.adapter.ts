@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { KnowledgeDocument, KnowledgeRepository, Topic } from '../../domain/knowledge/knowledge.model';
-import { URLConfig } from '../../constants/url.config';
+import { URLConfig } from '../../infrastructure/constants/url.config';
 
 @Injectable({
   providedIn: 'root'

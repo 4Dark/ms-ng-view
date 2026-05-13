@@ -3,7 +3,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { EventApiAdapter } from '@/app/core/adapters/event/event-api.adapter';
 import { TimeLimitedEvent } from '@/app/core/domain/event/event.model';
-import { URLConfig } from '@/app/core/constants/url.config';
+import { URLConfig } from '@/app/core/infrastructure/constants/url.config';
 
 describe('EventApiAdapter', () => {
   let adapter: EventApiAdapter;

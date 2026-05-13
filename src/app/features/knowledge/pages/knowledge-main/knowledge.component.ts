@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
-import { Topic } from '../../core/domain/knowledge/knowledge.model';
-import { KnowledgeUseCase } from '../../core/use-cases/knowledge/knowledge.usecase';
-import { SidebarService } from '../../core/services/sidebar.service';
+import { Topic } from '../../../../core/domain/knowledge/knowledge.model';
+import { KnowledgeUseCase } from '../../../../core/use-cases/knowledge/knowledge.usecase';
+import { SidebarService } from '../../../../core/infrastructure/services/sidebar.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({

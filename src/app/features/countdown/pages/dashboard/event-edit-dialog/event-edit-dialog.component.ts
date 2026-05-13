@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 import { TimeLimitedEvent } from '../../../../../core/domain/event/event.model';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-event-edit-dialog',
@@ -23,7 +24,8 @@ import { TimeLimitedEvent } from '../../../../../core/domain/event/event.model';
         MatNativeDateModule,
         MatFormFieldModule,
         MatInputModule,
-        MatSelectModule
+        MatSelectModule,
+        TranslateModule
     ],
     providers: [provideNativeDateAdapter()],
     templateUrl: './event-edit-dialog.component.html',

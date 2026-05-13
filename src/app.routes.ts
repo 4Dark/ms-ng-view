@@ -1,24 +1,24 @@
 import { Routes } from '@angular/router';
 import { ChatComponent } from './app/features/chat/chat.component';
-import { CreateEventComponent } from './app/features/landing/pages/create-event/create-event.component';
-import { CustomizeComponent } from './app/features/landing/pages/customize/customize.component';
-import { DashboardComponent } from './app/features/landing/pages/dashboard/dashboard.component';
-import { EventDetailComponent } from './app/features/landing/pages/event-detail/event-detail.component';
-import { EventListComponent } from './app/features/landing/pages/event-list/event-list.component';
-import { KnowledgeEmbeddingComponent } from './app/features/knowledge-embedding/knowledge-embedding.component';
-import { KnowledgeComponent } from './app/features/knowledge/knowledge.component';
-import { LandingComponent } from './app/features/landing/landing.component';
+import { CreateEventComponent } from './app/features/countdown/pages/create-event/create-event.component';
+import { CustomizeComponent } from './app/features/countdown/pages/customize/customize.component';
+import { DashboardComponent } from './app/features/countdown/pages/dashboard/dashboard.component';
+import { EventDetailComponent } from './app/features/countdown/pages/event-detail/event-detail.component';
+import { EventListComponent } from './app/features/countdown/pages/event-list/event-list.component';
+import { KnowledgeEmbeddingComponent } from './app/features/knowledge/pages/knowledge-embedding/knowledge-embedding.component';
+import { KnowledgeComponent } from './app/features/knowledge/pages/knowledge-main/knowledge.component';
+import { CountdownComponent } from './app/features/countdown/countdown.component';
 import { PromptComponent } from './app/features/prompt/prompt.component';
-import { authGuard } from './app/core/guards/auth.guard';
+import { authGuard } from './app/core/infrastructure/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'chat', pathMatch: 'full' },
-  { path: 'landing', component: LandingComponent },
-  { path: 'landing/dashboard', component: DashboardComponent, canActivate: [authGuard] },
-  { path: 'landing/create-event', component: CreateEventComponent, canActivate: [authGuard] },
-  { path: 'landing/events', component: EventListComponent, canActivate: [authGuard] },
-  { path: 'landing/events/detail', component: EventDetailComponent, canActivate: [authGuard] },
-  { path: 'landing/customize', component: CustomizeComponent, canActivate: [authGuard] },
+  { path: 'countdown', component: CountdownComponent },
+  { path: 'countdown/dashboard', component: DashboardComponent, canActivate: [authGuard] },
+  { path: 'countdown/create-event', component: CreateEventComponent, canActivate: [authGuard] },
+  { path: 'countdown/events', component: EventListComponent, canActivate: [authGuard] },
+  { path: 'countdown/events/detail', component: EventDetailComponent, canActivate: [authGuard] },
+  { path: 'countdown/customize', component: CustomizeComponent, canActivate: [authGuard] },
   { path: 'chat', component: ChatComponent, canActivate: [authGuard] },
   { path: 'chat/:sessionId', component: ChatComponent, canActivate: [authGuard] },
   { path: 'knowledge', component: KnowledgeComponent, canActivate: [authGuard] },

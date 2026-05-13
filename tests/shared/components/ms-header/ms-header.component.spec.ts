@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MsHeaderComponent } from '../../../../src/app/shared/components/ms-header/ms-header.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ThemeService } from '../../../../src/app/core/services/theme.service';
-import { UserService } from '../../../../src/app/core/services/user.service';
-import { LanguageService } from '../../../../src/app/core/services/language.service';
+import { ThemeService } from '../../../../src/app/core/infrastructure/services/theme.service';
+import { UserService } from '../../../../src/app/core/infrastructure/services/user.service';
+import { LanguageService } from '../../../../src/app/core/infrastructure/services/language.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { signal } from '@angular/core';
 import { Router } from '@angular/router';
