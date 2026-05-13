@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { TranslateService } from '@ngx-translate/core';
-import { LanguageService } from '../../../src/app/core/services/language.service';
+import { LanguageService } from '../../../src/app/core/infrastructure/services/language.service';
 import { of } from 'rxjs';
 
 describe('LanguageService (TL-01 ~ TL-03)', () => {

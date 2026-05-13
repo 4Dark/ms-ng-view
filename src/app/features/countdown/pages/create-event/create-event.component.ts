@@ -11,9 +11,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router, RouterLink } from '@angular/router';
-import { TimerService } from '../../core/services/timer.service';
-import { TimeLimitedEvent } from '../../core/domain/event/event.model';
-import { EventUseCase } from '../../core/use-cases/event/event.usecase';
+import { TimerService } from '../../../../core/infrastructure/services/timer.service';
+import { TimeLimitedEvent } from '../../../../core/domain/event/event.model';
+import { EventUseCase } from '../../../../core/use-cases/event/event.usecase';
 
 @Component({
   selector: 'app-create-event',
@@ -167,7 +167,7 @@ export class CreateEventComponent {
     try {
       await this.useCase.createEvent(newEvent);
       this.snackBar.open('🎉 Event created successfully!', 'Close', { duration: 3000, verticalPosition: 'top' });
-      setTimeout(() => this.router.navigate(['/landing/dashboard']), 500);
+      setTimeout(() => this.router.navigate(['/countdown/dashboard']), 500);
     } catch (err) {
       console.error('Error saving event:', err);
       this.snackBar.open('Failed to create event. Please try again.', 'Close', { duration: 3000 });

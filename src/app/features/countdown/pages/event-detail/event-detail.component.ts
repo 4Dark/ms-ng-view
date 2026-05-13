@@ -5,8 +5,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TimeLimitedEvent } from '../../core/domain/event/event.model';
-import { EventUseCase } from '../../core/use-cases/event/event.usecase';
+import { TimeLimitedEvent } from '../../../../core/domain/event/event.model';
+import { EventUseCase } from '../../../../core/use-cases/event/event.usecase';
 
 @Component({
   selector: 'app-event-detail',
@@ -47,7 +47,7 @@ export class EventDetailComponent implements OnInit {
       if (eventId) {
         this.loadEvent(eventId);
       } else {
-        this.router.navigate(['/landing/dashboard']);
+        this.router.navigate(['/countdown/dashboard']);
       }
     });
   }
@@ -60,7 +60,7 @@ export class EventDetailComponent implements OnInit {
     } catch (err) {
       console.error('Failed to load event:', err);
       this.snackBar.open('Failed to load event', 'Close', { duration: 3000 });
-      this.router.navigate(['/landing/dashboard']);
+      this.router.navigate(['/countdown/dashboard']);
     }
   }
 
@@ -114,11 +114,11 @@ export class EventDetailComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/landing/dashboard']);
+    this.router.navigate(['/countdown/dashboard']);
   }
 
   editEvent(): void {
-    this.router.navigate(['/landing/dashboard']);
+    this.router.navigate(['/countdown/dashboard']);
   }
 
   shareEvent(): void {
@@ -159,7 +159,7 @@ export class EventDetailComponent implements OnInit {
       try {
         await this.useCase.deleteEvent(event.id);
         this.snackBar.open('Event deleted successfully', 'Close', { duration: 2000 });
-        this.router.navigate(['/landing/dashboard']);
+        this.router.navigate(['/countdown/dashboard']);
       } catch (err) {
         console.error('Failed to delete event:', err);
         this.snackBar.open('Failed to delete event', 'Close', { duration: 3000 });

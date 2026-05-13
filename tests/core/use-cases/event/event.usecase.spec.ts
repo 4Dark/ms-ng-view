@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { EventUseCase } from '@/app/core/use-cases/event/event.usecase';
 import { EventApiAdapter } from '@/app/core/adapters/event/event-api.adapter';
-import { TimerService } from '@/app/core/services/timer.service';
+import { TimerService } from '@/app/core/infrastructure/services/timer.service';
 import { of } from 'rxjs';
 import { TimeLimitedEvent } from '@/app/core/domain/event/event.model';
 

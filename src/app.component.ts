@@ -7,11 +7,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
-import { ThemeService } from './app/core/services/theme.service';
-import { UserProfile, UserService } from './app/core/services/user.service';
+import { ThemeService } from './app/core/infrastructure/services/theme.service';
+import { UserProfile, UserService } from './app/core/infrastructure/services/user.service';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { LanguageService } from './app/core/services/language.service';
+import { LanguageService } from './app/core/infrastructure/services/language.service';
 import { MsHeaderComponent } from './app/shared/components/ms-header/ms-header.component';
 
 @Component({

@@ -9,7 +9,7 @@
     "KNOWLEDGE": "Knowledge Management",
     "PROMPT": "Prompt Hub",
     "MCP_MARKET": "Capability Set",
-    "DASHBOARD": "Overview",
+    "DASHBOARD": "Countdown",
     "EVENTS": "Event List",
     "CUSTOMIZE": "Customize"
   },
@@ -165,6 +165,48 @@
       "SAVE_CREATE": "Confirm Creation",
       "SAVE_EDIT": "Confirm Edit",
       "CANCEL": "Cancel"
+    }
+  },
+  "COUNTDOWN": {
+    "TITLE": "Countdown",
+    "EVENT_CATEGORIES": "Event Categories",
+    "ALL_EVENTS": "All Events",
+    "ANNIVERSARIES": "Anniversaries",
+    "BIRTHDAYS": "Birthdays",
+    "HOLIDAYS": "Holidays",
+    "PRO_MEMBER": "Pro Member",
+    "STATS": {
+      "TOTAL_EVENTS": "Total Events",
+      "VIEW_ALL": "View all events",
+      "THIS_MONTH": "This Month",
+      "FILTER_MONTH": "Filter this month",
+      "NEXT_UPCOMING": "Next Upcoming",
+      "VIEW_DETAILS": "View details",
+      "CATEGORIES": "Categories",
+      "VIEW_BREAKDOWN": "View breakdown"
+    },
+    "DASHBOARD": "My Dashboard",
+    "SEARCH_EVENTS": "Search events...",
+    "CREATE_NEW": "Create New Event",
+    "PAST_EVENT": "Past Event",
+    "DAYS": "Days",
+    "HRS": "Hrs",
+    "MINS": "Mins",
+    "SECS": "Secs",
+    "NO_EVENTS": "No events found",
+    "TRY_ADJUSTING": "Try adjusting your search or filters",
+    "NO_UPCOMING_FOUND": "📅 No upcoming events found",
+    "EDIT": {
+      "TITLE": "Edit Event",
+      "EVENT_TITLE": "Event Title",
+      "CATEGORY": "Category",
+      "SELECT_CATEGORY": "Select Category",
+      "DATE": "Date",
+      "PICK_DATE": "Pick a date",
+      "TIME": "Time (Optional)",
+      "DESCRIPTION": "Description",
+      "CANCEL": "Cancel",
+      "SAVE": "Save Changes"
     }
   }
 }

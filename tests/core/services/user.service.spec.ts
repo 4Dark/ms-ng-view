@@ -1,5 +1,5 @@
-import { AuthService } from '@/app/core/services/auth.service';
-import { UserProfile, UserService } from '@/app/core/services/user.service';
+import { AuthService } from '@/app/core/infrastructure/services/auth.service';
+import { UserProfile, UserService } from '@/app/core/infrastructure/services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';

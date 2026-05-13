@@ -8,10 +8,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router, RouterLink } from '@angular/router';
-import { TimeLimitedEvent } from '../../core/domain/event/event.model';
-import { EventUseCase } from '../../core/use-cases/event/event.usecase';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { SettingsDialogComponent } from '../../../../shared/components/settings-dialog/settings-dialog.component';
+import { TimeLimitedEvent } from '../../../../core/domain/event/event.model';
+import { EventUseCase } from '../../../../core/use-cases/event/event.usecase';
+import { SidebarService } from '../../../../core/infrastructure/services/sidebar.service';
 import { EventEditDialogComponent } from './event-edit-dialog/event-edit-dialog.component';
+import { MsHeaderComponent } from '../../../../shared/components/ms-header/ms-header.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +33,12 @@ import { EventEditDialogComponent } from './event-edit-dialog/event-edit-dialog.
     MatFormFieldModule,
     MatMenuModule,
     MatSnackBarModule,
-    EventEditDialogComponent
+    MatTooltipModule,
+    MatDialogModule,
+    EventEditDialogComponent,
+    SettingsDialogComponent,
+    MsHeaderComponent,
+    TranslateModule
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
@@ -37,12 +48,28 @@ export class DashboardComponent {
   protected useCase = inject(EventUseCase);
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
+  private sidebarService = inject(SidebarService);
+  private translate = inject(TranslateService);
+  private dialog = inject(MatDialog);
 
   protected readonly String = String;
 
   // UI-only states
   editingEvent = signal<TimeLimitedEvent | null>(null);
   showEditDialog = signal(false);
+
+  protected toggleSidebar() {
+    this.sidebarService.toggle();
+  }
+
+  protected openSettings() {
+    this.dialog.open(SettingsDialogComponent, {
+      width: '400px',
+      panelClass: ['custom-dialog-container', 'animate-fade-in-up']
+    });
+  }
+
+  isSidebarOpen = this.sidebarService.isOpen;
 
   // Delegated states for template
   allEvents = this.useCase.allEvents;
@@ -79,7 +106,7 @@ export class DashboardComponent {
     if (upcoming.length > 0) {
       this.viewEventDetail(upcoming[0].id!);
     } else {
-      this.snackBar.open('📅 No upcoming events found', 'Close', {
+      this.snackBar.open(this.translate.instant('COUNTDOWN.NO_UPCOMING_FOUND'), this.translate.instant('COMMON.CLOSE'), {
         duration: 3000,
         horizontalPosition: 'center',
         verticalPosition: 'bottom'
@@ -136,7 +163,7 @@ export class DashboardComponent {
   }
 
   viewEventDetail(eventId: string): void {
-    this.router.navigate(['/landing/events/detail'], { queryParams: { id: eventId } });
+    this.router.navigate(['/countdown/events/detail'], { queryParams: { id: eventId } });
   }
 
   getCategoryIcon(category: string): string {

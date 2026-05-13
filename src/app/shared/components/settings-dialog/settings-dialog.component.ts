@@ -7,7 +7,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { TranslateModule } from '@ngx-translate/core';
-import { ThemeService } from '../../../core/services/theme.service';
+import { ThemeService } from '../../../core/infrastructure/services/theme.service';
 
 /**
  * 设置对话框。

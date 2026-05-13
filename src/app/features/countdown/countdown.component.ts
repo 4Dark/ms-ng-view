@@ -5,15 +5,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-landing',
+  selector: 'app-countdown',
   imports: [
     CommonModule,
     MatButtonModule,
     MatIconModule,
     MatCardModule
   ],
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.css'],
+  templateUrl: './countdown.component.html',
+  styleUrls: ['./countdown.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LandingComponent { }
+export class CountdownComponent { }

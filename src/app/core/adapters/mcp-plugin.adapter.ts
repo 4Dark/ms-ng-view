@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, Observable } from 'rxjs';
 import { McpPlugin } from '../domain/mcp-plugin.model';
-import { URLConfig } from '../constants/url.config';
+import { URLConfig } from '../infrastructure/constants/url.config';
 
 @Injectable({
   providedIn: 'root'

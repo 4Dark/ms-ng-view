@@ -47,7 +47,7 @@ trigger: always_on
 
 ## 三、 数据请求规范 (Data Fetching & SSE)
 - **HttpClient 强制**: **绝对禁止**使用原生 `fetch`。所有请求必须通过 Angular `HttpClient` 以确保经过 HttpInterceptor。
-- **URL 集中化 (Best Practice)**: 所有的 API 请求路径必须统一配置在 `src/app/core/constants/url.config.ts` 中。Adapter 层只能通过 `URLConfig.XXX` 引用，严禁散落在代码各处。
+- **URL 集中化 (Best Practice)**: 所有的 API 请求路径必须统一配置在 `src/app/core/infrastructure/constants/url.config.ts` 中。Adapter 层只能通过 `URLConfig.XXX` 引用，严禁散落在代码各处。
 - **拦截器范围**: `apiUrlInterceptor` 必须仅拦截以 `/` 开头的 API 请求。严禁拦截 `./` 开头的相对路径（如 i18n 资源）。
 - **异步处理**: 严禁使用已弃用的 `.toPromise()`。普通接口首选 `firstValueFrom(this.http.get(...))`。
 - **SSE 流式处理**: 
@@ -91,7 +91,7 @@ trigger: always_on
 
 ### 1. 项目结构
 - **核心逻辑**: 必须存放在 `src/app/core/` 下。
-- **拦截器**: 目录必须命名为 `interceptors`。
+- **拦截器**: 统一存放在 `src/app/core/infrastructure/interceptors/` 目录下。
 
 ### 2. 测试规范 (Jest)
 - **Builder**: 使用 `@angular-builders/jest:run`。配置文件使用 `config` 而非 `jestConfig`。

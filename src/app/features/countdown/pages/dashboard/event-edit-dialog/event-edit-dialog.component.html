@@ -4,7 +4,7 @@
     <div class="dialog-container bg-white dark:bg-surface-dark rounded-2xl shadow-2xl max-w-md w-full p-6 dark:text-white"
         (click)="$event.stopPropagation()">
         <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold">Edit Event</h2>
+            <h2 class="text-2xl font-bold">{{ 'COUNTDOWN.EDIT.TITLE' | translate }}</h2>
             <button (click)="onCancel()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
                 <mat-icon>close</mat-icon>
             </button>
@@ -13,16 +13,16 @@
         <div class="space-y-4">
             <!-- Title -->
             <div>
-                <label class="block text-sm font-medium mb-2">Event Title</label>
+                <label class="block text-sm font-medium mb-2">{{ 'COUNTDOWN.EDIT.EVENT_TITLE' | translate }}</label>
                 <input type="text" [(ngModel)]="event.title"
                     class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1c1f27] rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50">
             </div>
 
             <!-- Category -->
             <div>
-                <label class="block text-sm font-medium mb-2">Category</label>
+                <label class="block text-sm font-medium mb-2">{{ 'COUNTDOWN.EDIT.CATEGORY' | translate }}</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <mat-label>Select Category</mat-label>
+                    <mat-label>{{ 'COUNTDOWN.EDIT.SELECT_CATEGORY' | translate }}</mat-label>
                     <mat-select [(ngModel)]="event.category">
                         <mat-option value="Birthday">Birthday</mat-option>
                         <mat-option value="Anniversary">Anniversary</mat-option>
@@ -38,9 +38,9 @@
 
             <!-- Date -->
             <div>
-                <label class="block text-sm font-medium mb-2">Date</label>
+                <label class="block text-sm font-medium mb-2">{{ 'COUNTDOWN.EDIT.DATE' | translate }}</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <mat-label>Pick a date</mat-label>
+                    <mat-label>{{ 'COUNTDOWN.EDIT.PICK_DATE' | translate }}</mat-label>
                     <input matInput [matDatepicker]="picker" [(ngModel)]="event.date">
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
@@ -49,14 +49,14 @@
 
             <!-- Time -->
             <div>
-                <label class="block text-sm font-medium mb-2">Time (Optional)</label>
+                <label class="block text-sm font-medium mb-2">{{ 'COUNTDOWN.EDIT.TIME' | translate }}</label>
                 <input type="time" [(ngModel)]="event.time"
                     class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1c1f27] rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50">
             </div>
 
             <!-- Description -->
             <div>
-                <label class="block text-sm font-medium mb-2">Description</label>
+                <label class="block text-sm font-medium mb-2">{{ 'COUNTDOWN.EDIT.DESCRIPTION' | translate }}</label>
                 <textarea [(ngModel)]="event.description"
                     class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1c1f27] rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
                     rows="3"></textarea>
@@ -71,7 +71,7 @@
             </button>
             <button type="button" (click)="onSave()" (mousedown)="$event.preventDefault()" (mouseup)="onSave()"
                 class="flex-1 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-colors font-medium cursor-pointer shadow-md hover:shadow-lg">
-                Save Changes
+                {{ 'COUNTDOWN.EDIT.SAVE' | translate }}
             </button>
         </div>
     </div>

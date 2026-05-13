@@ -5,8 +5,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterLink } from '@angular/router';
-import { EventUseCase } from '../../core/use-cases/event/event.usecase';
-import { TimeLimitedEvent } from '../../core/domain/event/event.model';
+import { EventUseCase } from '../../../../core/use-cases/event/event.usecase';
+import { TimeLimitedEvent } from '../../../../core/domain/event/event.model';
 
 @Component({
   selector: 'app-event-list',
