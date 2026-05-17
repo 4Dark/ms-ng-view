@@ -145,6 +145,14 @@ export class KnowledgeUseCase {
     }
   }
 
+  async triggerRecipeBuild(): Promise<{ status: string, taskId: string }> {
+    return this.adapter.triggerRecipeBuild();
+  }
+
+  async getBuildProgress(taskId: string): Promise<any> {
+    return this.adapter.getBuildProgress(taskId);
+  }
+
   /**
    * 获取文档的预览 URL。
    * @param documentId - 文档 ID。

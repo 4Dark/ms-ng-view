@@ -57,6 +57,24 @@ export class KnowledgeApiAdapter implements KnowledgeRepository {
     return firstValueFrom(this.http.post(`${this.baseUrl}/documents/${documentId}/ingest`, configPayload));
   }
 
+  async triggerRecipeBuild(): Promise<{ status: string, taskId: string }> {
+    return firstValueFrom(this.http.post<{ status: string, taskId: string }>(URLConfig.KNOWLEDGE.BUILD_RECIPE, {}));
+  }
+
+  async getBuildProgress(taskId: string): Promise<{
+    id: string;
+    taskType: string;
+    status: string;
+    totalCount: number;
+    processedCount: number;
+    currentItemName: string | null;
+    errorMessage: string | null;
+    createTime: string;
+    updateTime: string;
+  }> {
+    return firstValueFrom(this.http.get<any>(URLConfig.KNOWLEDGE.TASK_PROGRESS(taskId)));
+  }
+
   getDocumentPreviewUrl(documentId: string): string {
     return `${this.baseUrl}/documents/${documentId}/file`;
   }

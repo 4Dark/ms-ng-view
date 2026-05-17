@@ -27,4 +27,17 @@ export interface KnowledgeRepository {
   uploadDocument(topicId: string, file: File): Promise<KnowledgeDocument>;
   deleteDocument(documentId: string): Promise<void>;
   startIngestTask(documentId: string, configPayload: any): Promise<any>;
+  triggerRecipeBuild(): Promise<{ status: string, taskId: string }>;
+  getBuildProgress(taskId: string): Promise<{
+    id: string;
+    taskType: string;
+    status: string;
+    totalCount: number;
+    processedCount: number;
+    currentItemName: string | null;
+    errorMessage: string | null;
+    createTime: string;
+    updateTime: string;
+  }>;
 }
+
