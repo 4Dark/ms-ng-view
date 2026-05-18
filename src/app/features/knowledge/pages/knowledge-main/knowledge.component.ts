@@ -147,18 +147,16 @@ export class KnowledgeComponent implements OnInit, OnDestroy {
   isUploading = this.useCase.isUploading;
   searchQuery = this.useCase.searchQuery;
 
-  // Pagination states
-  currentPage = signal<number>(0);
-  pageSize = signal<number>(10);
+  // Pagination states delegated to UseCase
+  currentPage = this.useCase.currentPage;
+  pageSize = this.useCase.pageSize;
   pageSizeOptions = [5, 10, 20, 50];
 
   paginatedDocuments = computed(() => {
-    const docs = this.filteredDocuments();
-    const startIndex = this.currentPage() * this.pageSize();
-    return docs.slice(startIndex, startIndex + this.pageSize());
+    return this.filteredDocuments();
   });
 
-  totalDocuments = computed(() => this.filteredDocuments().length);
+  totalDocuments = this.useCase.totalDocuments;
   
   totalPages = computed(() => {
     const total = this.totalDocuments();
@@ -201,10 +199,9 @@ export class KnowledgeComponent implements OnInit, OnDestroy {
   });
 
   constructor() {
-    // Reset page to 0 when search query or selected topic changes
+    // Reset page to 0 when search query changes
     effect(() => {
       this.searchQuery();
-      this.selectedTopicId();
       this.currentPage.set(0);
     });
   }

@@ -18,12 +18,20 @@ export interface KnowledgeDocument {
   configJson?: any;
 }
 
+export interface PageResult<T> {
+  records: T[];
+  total: number;
+  size: number;
+  current: number;
+  pages: number;
+}
+
 export interface KnowledgeRepository {
   getTopics(): Promise<Topic[]>;
   createTopic(topic: Topic): Promise<Topic>;
   updateTopic(id: string, topic: Partial<Topic>): Promise<Topic>;
   deleteTopic(id: string): Promise<void>;
-  getDocuments(topicId: string): Promise<KnowledgeDocument[]>;
+  getDocuments(topicId: string, page: number, size: number): Promise<PageResult<KnowledgeDocument>>;
   uploadDocument(topicId: string, file: File): Promise<KnowledgeDocument>;
   deleteDocument(documentId: string): Promise<void>;
   startIngestTask(documentId: string, configPayload: any): Promise<any>;
